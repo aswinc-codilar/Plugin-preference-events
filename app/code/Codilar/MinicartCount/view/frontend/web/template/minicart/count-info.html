@@ -1,0 +1,10 @@
+<!-- summary_count comes from our overridden getSummaryCount(), codilar_total_qty from getSectionData() -->
+<div class="codilar-count-info"
+     style="padding: 10px 0; margin-bottom: 10px; border-bottom: 1px solid #ccc; font-size: 13px;"
+     if="cart().summary_count">
+    <strong text="cart().summary_count"></strong>
+    <span translate="'different product(s)'"></span>
+    &middot;
+    <strong text="cart().codilar_total_qty"></strong>
+    <span translate="'unit(s) in total'"></span>
+</div>

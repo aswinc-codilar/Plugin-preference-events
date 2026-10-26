@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Adds a line to the minicart dropdown using its existing "extraInfo" area,
+             so the core minicart template does not need to be copied. -->
+        <referenceBlock name="minicart">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="minicart_content" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="codilar_count_info" xsi:type="array">
+                                    <item name="component" xsi:type="string">Codilar_MinicartCount/js/view/count-info</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="displayArea" xsi:type="string">extraInfo</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

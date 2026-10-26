@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- All three plugins wrap Magento\Checkout\Model\Cart, the model the storefront
+         add-to-cart, update and delete controllers go through.
+         Declared in etc/frontend so admin order creation is not affected.
+         sortOrder: the guest check (before, 10) runs before the duplicate check (around, 20). -->
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="codilar_cartplugins_guest_block"
+                type="Codilar\CartPlugins\Plugin\Checkout\GuestAddToCartBlock"
+                sortOrder="10"/>
+        <plugin name="codilar_cartplugins_duplicate_block"
+                type="Codilar\CartPlugins\Plugin\Checkout\DuplicateItemBlock"
+                sortOrder="20"/>
+        <plugin name="codilar_cartplugins_free_gift"
+                type="Codilar\CartPlugins\Plugin\Checkout\FreeGift"
+                sortOrder="30"/>
+    </type>
+
+    <!-- Which phones earn a gift, and which product is given away. -->
+    <type name="Codilar\CartPlugins\Plugin\Checkout\FreeGift">
+        <arguments>
+            <argument name="phonesCategoryUrlKey" xsi:type="string">phones</argument>
+            <argument name="priceThreshold" xsi:type="number">1000</argument>
+            <argument name="giftSku" xsi:type="string">case-iphone-13-pro</argument>
+        </arguments>
+    </type>
+
+    <!-- Session is not needed until a plugin actually runs. -->
+    <type name="Codilar\CartPlugins\Plugin\Checkout\GuestAddToCartBlock">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+</config>

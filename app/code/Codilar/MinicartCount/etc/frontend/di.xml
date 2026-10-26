@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- "Whenever Magento asks for the core minicart data source, give it our class instead."
+         Our class overrides the protected getSummaryCount(), so the minicart badge shows the
+         number of different products instead of the total quantity.
+         Core plugins on Magento\Checkout\CustomerData\Cart (Tax, Weee, PayPal) still run on our class. -->
+    <preference for="Magento\Checkout\CustomerData\Cart"
+                type="Codilar\MinicartCount\CustomerData\Cart"/>
+</config>

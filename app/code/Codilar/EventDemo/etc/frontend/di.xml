@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Which product gets the cart-only price, and what that price is. -->
+    <type name="Codilar\EventDemo\Observer\CartSpecialPriceObserver">
+        <arguments>
+            <argument name="sku" xsi:type="string">realme-xt</argument>
+            <argument name="specialPrice" xsi:type="number">99</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,60 @@
+# ---------------------------------------------
+# Magento 2 .gitignore
+# ---------------------------------------------
+
+# Composer dependencies (restore with `composer install`)
+/vendor/
+/auth.json
+
+# Environment-specific config and secrets
+/app/etc/env.php
+/app/etc/*.local.php
+
+# Generated code and runtime data (rebuilt by Magento)
+/generated/*
+!/generated/.htaccess
+/var/*
+!/var/.htaccess
+
+# Deployed static content (rebuilt by setup:static-content:deploy)
+/pub/static/*
+!/pub/static/.htaccess
+
+# Uploaded and generated media
+/pub/media/*
+!/pub/media/.htaccess
+!/pub/media/customer/.htaccess
+!/pub/media/downloadable/.htaccess
+!/pub/media/import/.htaccess
+!/pub/media/theme_customization/.htaccess
+
+# Frontend tooling
+/node_modules/
+/package.json
+/package-lock.json
+/Gruntfile.js
+/grunt-config.json
+/dev/tools/grunt/configs/local-themes.js
+
+# Test and tool caches
+/dev/tests/*/tmp/*
+/dev/tests/*/var/*
+.phpunit.result.cache
+.php-cs-fixer.cache
+.php_cs.cache
+
+# Logs and dumps
+*.log
+*.sql
+*.sql.gz
+
+# IDE / editor
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db

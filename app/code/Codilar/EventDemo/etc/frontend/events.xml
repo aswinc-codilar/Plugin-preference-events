@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- A core event, dispatched in Magento\Checkout\Model\Cart::addProduct() right after a
+         product goes into the cart, with the data ['quote_item' => $item, 'product' => $product].
+         Declared in etc/frontend so the admin is not affected.
+         Add the product below to the cart and look at its price. -->
+    <event name="checkout_cart_product_add_after">
+        <observer name="codilar_eventdemo_cart_special_price"
+                  instance="Codilar\EventDemo\Observer\CartSpecialPriceObserver"/>
+    </event>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- "Whenever Magento asks for the core header Logo block, give it our Logo instead."
+         Declared in etc/frontend so the admin is not affected.
+         Compare the logo at the top of any storefront page as a guest and when logged in. -->
+    <preference for="Magento\Theme\Block\Html\Header\Logo"
+                type="Codilar\PreferenceDemo\Block\Html\Header\Logo"/>
+
+    <!-- Core Footer::replaceCurrentYear() is private, so it cannot be overridden directly.
+         Our Footer overrides its public caller, getCopyright(), to use its own year logic.
+         Set the footer copyright to e.g. "Copyright © {YYYY} Codilar" to see "2015–<current year>". -->
+    <preference for="Magento\Theme\Block\Html\Footer"
+                type="Codilar\PreferenceDemo\Block\Html\Footer"/>
+</config>
