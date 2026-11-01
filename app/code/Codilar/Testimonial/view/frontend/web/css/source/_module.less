@@ -1,0 +1,155 @@
+//
+//  Testimonials page (/testimonial)
+//  _____________________________________________
+
+@testimonial-star__color: #ff5501;
+@testimonial-star-empty__color: #c7c7c7;
+
+& when (@media-common = true) {
+    .testimonial-page {
+        .testimonial-section-title {
+            margin: 0 0 @indent__m;
+            font-weight: @font-weight__light;
+        }
+
+        .testimonial-form-wrapper {
+            margin-bottom: @indent__xl;
+            padding: @indent__m;
+            border: 1px solid @border-color__base;
+            background: @color-white-smoke;
+        }
+
+        .testimonial-form {
+            max-width: 640px;
+
+            .fieldset {
+                margin-bottom: @indent__base;
+            }
+
+            .field.rating {
+                border: 0;
+                padding: 0;
+            }
+        }
+
+        // Radios are output 5 → 1 and shown reversed, so ~ selects the lower stars.
+        .testimonial-star-input {
+            display: inline-flex;
+            flex-direction: row-reverse;
+
+            input {
+                position: absolute;
+                opacity: 0;
+                width: 1px;
+                height: 1px;
+            }
+
+            label {
+                cursor: pointer;
+                padding: 0 2px;
+                font-size: 2.8rem;
+                line-height: 1;
+                color: @testimonial-star-empty__color;
+
+                &:before {
+                    content: '\2605';
+                }
+            }
+
+            input:checked ~ label,
+            label:hover,
+            label:hover ~ label {
+                color: @testimonial-star__color;
+            }
+
+            input:focus-visible + label {
+                outline: 2px solid @focus__color;
+            }
+        }
+
+        .sr-only {
+            .lib-visually-hidden();
+        }
+
+        .testimonial-hp {
+            position: absolute;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .testimonial-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: @indent__base;
+            margin: 0 0 @indent__m;
+            padding: 0;
+            list-style: none;
+        }
+
+        .testimonial-card {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: @indent__m;
+            border: 1px solid @border-color__base;
+            border-radius: 4px;
+            background: @color-white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
+        }
+
+        .testimonial-stars {
+            margin-bottom: @indent__s;
+            font-size: 1.8rem;
+            line-height: 1;
+
+            .star {
+                color: @testimonial-star-empty__color;
+
+                &.filled {
+                    color: @testimonial-star__color;
+                }
+            }
+        }
+
+        .testimonial-message {
+            flex: 1;
+            margin: 0 0 @indent__base;
+            padding: 0;
+            border: 0;
+            font-style: normal;
+            overflow-wrap: anywhere;
+        }
+
+        .testimonial-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 4px @indent__s;
+            padding-top: @indent__s;
+            border-top: 1px solid @border-color__base;
+            font-size: @font-size__s;
+            color: @text__color__muted;
+
+            .testimonial-name {
+                color: @text__color;
+            }
+
+            .testimonial-city:before {
+                content: '\00B7';
+                margin-right: @indent__s;
+            }
+
+            .testimonial-date {
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .testimonial-page .testimonial-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

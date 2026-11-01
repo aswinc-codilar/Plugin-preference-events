@@ -1,0 +1,22 @@
+//
+//  Return policy summary on the product page
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .product-return-policy {
+        clear: both;
+        margin: 10px 0 20px;
+        padding: 10px 12px;
+        border-left: 3px solid #006400;
+        background: #f5f5f5;
+
+        &.not-eligible {
+            border-left-color: #e02b27;
+        }
+    }
+
+    .product-return-policy-title {
+        display: block;
+        margin-bottom: 3px;
+    }
+}

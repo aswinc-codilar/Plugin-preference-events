@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- product.info.social holds the Add to Wish List / Compare links -->
+        <referenceContainer name="product.info.extrahint">
+            <block class="Magento\Catalog\Block\Product\View"
+                   name="product.info.return.policy"
+                   template="Codilar_ProductReturns::product/view/return-policy.phtml"
+                   after="product.info.social"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,82 @@
+<?php
+/**
+ * "Write a Testimonial" form.
+ *
+ * @var \Codilar\Testimonial\Block\Form $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$selectedRating = (int) $block->getFieldValue('rating');
+$honeypot = $block->getHoneypotFieldName();
+?>
+<div class="testimonial-form-wrapper">
+    <h2 class="testimonial-section-title"><?= $escaper->escapeHtml(__('Write a Testimonial')) ?></h2>
+    <form class="form testimonial-form"
+          action="<?= $escaper->escapeUrl($block->getFormAction()) ?>"
+          method="post"
+          id="testimonial-form"
+          data-mage-init='{"validation":{}}'>
+        <?= $block->getBlockHtml('formkey') ?>
+        <fieldset class="fieldset">
+            <div class="field name required">
+                <label class="label" for="testimonial-name"><span><?= $escaper->escapeHtml(__('Name')) ?></span></label>
+                <div class="control">
+                    <input type="text" name="name" id="testimonial-name" class="input-text"
+                           maxlength="255" autocomplete="name"
+                           value="<?= $escaper->escapeHtmlAttr($block->getFieldValue('name')) ?>"
+                           data-validate="{required:true}"/>
+                </div>
+            </div>
+            <div class="field city">
+                <label class="label" for="testimonial-city"><span><?= $escaper->escapeHtml(__('City')) ?></span></label>
+                <div class="control">
+                    <input type="text" name="city" id="testimonial-city" class="input-text"
+                           maxlength="100" autocomplete="address-level2"
+                           value="<?= $escaper->escapeHtmlAttr($block->getFieldValue('city')) ?>"/>
+                </div>
+            </div>
+            <fieldset class="field rating required">
+                <legend class="label"><span><?= $escaper->escapeHtml(__('Rating')) ?></span></legend>
+                <div class="control">
+                    <div class="testimonial-star-input">
+                        <?php for ($star = 5; $star >= 1; $star--): ?>
+                            <input type="radio" name="rating" value="<?= (int) $star ?>"
+                                   id="testimonial-rating-<?= (int) $star ?>"
+                                   <?= $selectedRating === $star ? 'checked' : '' ?>
+                                   <?= $star === 1 ? 'data-validate="{\'validate-one-required-by-name\':true}"' : '' ?>/>
+                            <label for="testimonial-rating-<?= (int) $star ?>"
+                                   title="<?= $escaper->escapeHtmlAttr(__('%1 out of 5 stars', $star)) ?>">
+                                <span class="sr-only"><?= $escaper->escapeHtml(__('%1 out of 5 stars', $star)) ?></span>
+                            </label>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="field message required">
+                <label class="label" for="testimonial-message"><span><?= $escaper->escapeHtml(__('Message')) ?></span></label>
+                <div class="control">
+                    <textarea name="message" id="testimonial-message" class="input-text" rows="5"
+                              maxlength="1000"
+                              data-validate="{required:true, minlength:20, maxlength:1000}"
+                    ><?= $escaper->escapeHtml($block->getFieldValue('message')) ?></textarea>
+                    <div class="note"><?= $escaper->escapeHtml(__('Between 20 and 1000 characters.')) ?></div>
+                </div>
+            </div>
+            <div class="testimonial-hp" aria-hidden="true">
+                <label for="testimonial-<?= $escaper->escapeHtmlAttr($honeypot) ?>">
+                    <?= $escaper->escapeHtml(__('Leave this field empty')) ?>
+                </label>
+                <input type="text" name="<?= $escaper->escapeHtmlAttr($honeypot) ?>"
+                       id="testimonial-<?= $escaper->escapeHtmlAttr($honeypot) ?>"
+                       value="" tabindex="-1" autocomplete="off"/>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action submit primary">
+                    <span><?= $escaper->escapeHtml(__('Submit Testimonial')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

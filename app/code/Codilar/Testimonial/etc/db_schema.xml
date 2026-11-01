@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="custom_testimonial" resource="default" engine="innodb" comment="Customer Testimonials">
+        <column xsi:type="int" name="testimonial_id" unsigned="true" nullable="false" identity="true"
+                comment="Testimonial ID"/>
+        <column xsi:type="varchar" name="name" length="255" nullable="false" comment="Customer Name"/>
+        <column xsi:type="varchar" name="city" length="100" nullable="true" comment="City"/>
+        <column xsi:type="smallint" name="rating" unsigned="true" nullable="false" comment="Rating (1-5)"/>
+        <column xsi:type="text" name="message" nullable="false" comment="Message"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="testimonial_id"/>
+        </constraint>
+        <index referenceId="CUSTOM_TESTIMONIAL_CREATED_AT" indexType="btree">
+            <column name="created_at"/>
+        </index>
+    </table>
+</schema>

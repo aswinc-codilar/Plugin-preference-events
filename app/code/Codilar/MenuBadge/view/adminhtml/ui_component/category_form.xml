@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="display_settings">
+        <field name="menu_badge" sortOrder="65" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">category</item>
+                    <item name="default" xsi:type="string"></item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Menu Badge</label>
+                <notice translate="true">Shown as a small label next to the category name in the top navigation menu.</notice>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Codilar\MenuBadge\Model\Category\Attribute\Source\MenuBadge"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

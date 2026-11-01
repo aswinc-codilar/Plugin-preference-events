@@ -1,0 +1,37 @@
+//
+//  Menu Badge: small colored label after a category name in the top menu
+//  _____________________________________________
+
+@menu-badge__new__background: #1979c3;
+@menu-badge__hot__background: #e02b27;
+@menu-badge__sale__background: #006400;
+
+& when (@media-common = true) {
+    .navigation .menu-badge > a > span:not(.ui-menu-icon)::after {
+        display: inline-block;
+        margin-left: 6px;
+        padding: 1px 5px;
+        border-radius: 3px;
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.4;
+        text-transform: uppercase;
+        vertical-align: middle;
+    }
+
+    .navigation .menu-badge-new > a > span:not(.ui-menu-icon)::after {
+        content: 'New';
+        background: @menu-badge__new__background;
+    }
+
+    .navigation .menu-badge-hot > a > span:not(.ui-menu-icon)::after {
+        content: 'Hot';
+        background: @menu-badge__hot__background;
+    }
+
+    .navigation .menu-badge-sale > a > span:not(.ui-menu-icon)::after {
+        content: 'Sale';
+        background: @menu-badge__sale__background;
+    }
+}

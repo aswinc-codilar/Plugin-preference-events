@@ -1,0 +1,18 @@
+{
+    "custom_testimonial": {
+        "column": {
+            "testimonial_id": true,
+            "name": true,
+            "city": true,
+            "rating": true,
+            "message": true,
+            "created_at": true
+        },
+        "index": {
+            "CUSTOM_TESTIMONIAL_CREATED_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

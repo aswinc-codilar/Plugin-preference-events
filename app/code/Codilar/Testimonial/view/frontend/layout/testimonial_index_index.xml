@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="codilar.testimonial.page" htmlTag="div" htmlClass="testimonial-page">
+                <!-- Not cacheable: the form refills typed values after errors and new entries must show at once. -->
+                <block class="Codilar\Testimonial\Block\Form"
+                       name="codilar.testimonial.form"
+                       template="Codilar_Testimonial::form.phtml"
+                       cacheable="false"/>
+                <block class="Codilar\Testimonial\Block\TestimonialList"
+                       name="codilar.testimonial.list"
+                       template="Codilar_Testimonial::list.phtml"
+                       after="codilar.testimonial.form"/>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

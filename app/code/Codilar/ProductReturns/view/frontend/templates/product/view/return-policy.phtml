@@ -1,0 +1,28 @@
+<?php
+/**
+ * Return policy summary shown below the Wishlist / Compare links on the product page.
+ *
+ * @var \Magento\Catalog\Block\Product\View $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+use Codilar\ProductReturns\Setup\Patch\Data\AddReturnProductAttributes;
+
+$product = $block->getProduct();
+$eligible = $product->getData(AddReturnProductAttributes::ATTRIBUTE_RETURN_ELIGIBLE);
+// Products saved before the attribute existed have no value; the attribute default is "Yes".
+$isEligible = $eligible === null || $eligible === '' || (bool) $eligible;
+$windowDays = (int) $product->getData(AddReturnProductAttributes::ATTRIBUTE_RETURN_WINDOW_DAYS);
+?>
+<div class="product-return-policy <?= $isEligible ? 'eligible' : 'not-eligible' ?>">
+    <strong class="product-return-policy-title"><?= $escaper->escapeHtml(__('Return Policy')) ?></strong>
+    <span class="product-return-policy-text">
+        <?php if (!$isEligible): ?>
+            <?= $escaper->escapeHtml(__('This item is not eligible for return.')) ?>
+        <?php elseif ($windowDays > 0): ?>
+            <?= $escaper->escapeHtml(__('Returnable within %1 days of delivery.', $windowDays)) ?>
+        <?php else: ?>
+            <?= $escaper->escapeHtml(__('Returnable as per our standard return policy.')) ?>
+        <?php endif; ?>
+    </span>
+</div>

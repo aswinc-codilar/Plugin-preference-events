@@ -1,0 +1,50 @@
+<?php
+/**
+ * Testimonials list, newest first.
+ *
+ * @var \Codilar\Testimonial\Block\TestimonialList $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$testimonials = $block->getTestimonials();
+?>
+<div class="testimonial-list-wrapper">
+    <h2 class="testimonial-section-title"><?= $escaper->escapeHtml(__('What Our Customers Say')) ?></h2>
+    <?php if (!$testimonials->getSize()): ?>
+        <div class="message info empty">
+            <div><?= $escaper->escapeHtml(__('No testimonials yet. Be the first to share your experience!')) ?></div>
+        </div>
+    <?php else: ?>
+        <ol class="testimonial-list">
+            <?php /** @var \Codilar\Testimonial\Model\Testimonial $testimonial */ ?>
+            <?php foreach ($testimonials as $testimonial): ?>
+                <?php $rating = (int) $testimonial->getData('rating'); ?>
+                <li class="testimonial-card">
+                    <div class="testimonial-stars"
+                         role="img"
+                         aria-label="<?= $escaper->escapeHtmlAttr(__('Rated %1 out of 5', $rating)) ?>">
+                        <?php for ($star = 1; $star <= 5; $star++): ?>
+                            <span class="star<?= $star <= $rating ? ' filled' : '' ?>" aria-hidden="true">&#9733;</span>
+                        <?php endfor; ?>
+                    </div>
+                    <blockquote class="testimonial-message">
+                        <?= nl2br($escaper->escapeHtml($testimonial->getData('message'))) ?>
+                    </blockquote>
+                    <div class="testimonial-meta">
+                        <strong class="testimonial-name"><?= $escaper->escapeHtml($testimonial->getData('name')) ?></strong>
+                        <?php if ($testimonial->getData('city')): ?>
+                            <span class="testimonial-city"><?= $escaper->escapeHtml($testimonial->getData('city')) ?></span>
+                        <?php endif; ?>
+                        <time class="testimonial-date"
+                              datetime="<?= $escaper->escapeHtmlAttr($testimonial->getData('created_at')) ?>">
+                            <?= $escaper->escapeHtml($block->getFormattedDate($testimonial)) ?>
+                        </time>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+        <?php if ($pagerHtml = $block->getPagerHtml()): ?>
+            <div class="testimonial-toolbar toolbar bottom"><?= /* @noEscape */ $pagerHtml ?></div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
